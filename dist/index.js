@@ -69,10 +69,7 @@ var setTab = exports.setTab = function setTab(tab) {
 };
 
 var goRoute = exports.goRoute = function goRoute(routeId, query) {
-  return (0, _thrux.dispatch)('router:GO_ROUTE', {
-    route: (0, _find2.default)(_routes, { path: routeId || '/' }),
-    props: (0, _qs.parse)(query)
-  });
+  return window.location.href = '' + _options.base + (routeId || '/') + (query ? '?' + (0, _qs.stringify)(query) : '');
 };
 
 var openModal = exports.openModal = function openModal(_ref2) {
@@ -90,7 +87,11 @@ var goHash = function goHash() {
       path = _location$hash$split2[0],
       query = _location$hash$split2[1];
 
-  goRoute(path.replace('' + _options.base, ''), query);
+  var routeId = path.replace('' + _options.base, '');
+  (0, _thrux.dispatch)('router:GO_ROUTE', {
+    route: (0, _find2.default)(_routes, { path: routeId || '/' }),
+    props: (0, _qs.parse)(query)
+  });
 };
 
 var Router = function (_Component) {
