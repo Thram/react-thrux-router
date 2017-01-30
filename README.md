@@ -9,7 +9,7 @@ Cross Browser router for React using [Thrux](https://github.com/Thram/thrux) sta
 
 ### TODO Docs, for now just an Example:
 
-`index.js`
+`App.js`
 
 ```javascript
 import React, {Component} from "react";
@@ -28,6 +28,30 @@ const routes = [
 class App extends Component {
   render = () => (<Router routes={routes}/>)
 }
+```
+
+
+`Home.js`
+
+```javascript
+import React, {Component} from "react";
+import {setTab, openModal, closeModal} from "thrux-router";
+
+class Home extends Component {
+  render   = () => (
+      <div>
+        <h1>Home</h1>
+        <a href="#/first?test=1&test2=2">First</a>
+        <a href="#/second">Second</a>
+
+        <button onClick={()=>openModal({component: Home})}>Set Modal</button>
+        <button onClick={()=>closeModal()}>UnSet Modal</button>
+        <button onClick={()=>setTab('sometab')}>Set Tab</button>
+      </div>
+  )
+}
+
+export default Home;
 ```
 
 `First.js`
