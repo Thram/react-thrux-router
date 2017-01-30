@@ -4,7 +4,7 @@
 import assign from 'lodash/assign';
 import omit from 'lodash/omit';
 import find from 'lodash/find';
-import {parse} from 'qs';
+import {parse, stringify} from 'qs';
 import React, {Component} from "react";
 import {connect} from "react-thrux";
 import {register, createDict, dispatch} from "thrux";
@@ -25,18 +25,19 @@ register({
 
 export const setTab = (tab) => dispatch('router:SET_TAB', tab);
 
-export const goRoute = (routeId, query) => dispatch('router:GO_ROUTE', {
-  route: find(_routes, {path: routeId || '/'}),
-  props: parse(query)
-});
+export const goRoute = (routeId, query) => window.location.href = `${_options.base}${routeId || '/'}${query ? `?${stringify(query)}` : ''}`;
 
 export const openModal = ({component}) => dispatch('router:OPEN_MODAL', {component});
 
 export const closeModal = () => dispatch('router:CLOSE_MODAL');
 
 const goHash = () => {
-  const [path, query] = location.hash.split('?');
-  goRoute(path.replace(`${_options.base}`, ''), query);
+  const [path, query] =location.hash.split('?');
+  const routeId       = path.replace(`${_options.base}`, '');
+  dispatch('router:GO_ROUTE', {
+    route: find(_routes, {path: routeId || '/'}),
+    props: parse(query)
+  });
 };
 
 class Router extends Component {
