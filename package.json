@@ -53,7 +53,7 @@
   "dependencies": {
     "qs": "^6.3.0",
     "react": "^15.4.2",
-    "react-thrux": "^1.1.0",
-    "thrux": "^2.3.5"
+    "react-thrux": "^1.2.1",
+    "thrux": "^2.4.1"
   }
 }
