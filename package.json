@@ -43,7 +43,7 @@
     "rimraf": "^2.5.4",
     "semantic-release": "^6.3.2",
     "umd": "^3.0.1",
-    "webpack": "^1.14.0"
+    "webpack": "^2.2.1"
   },
   "config": {
     "commitizen": {
@@ -53,7 +53,7 @@
   "dependencies": {
     "qs": "^6.3.0",
     "react": "^15.4.2",
-    "react-thrux": "^1.0.8",
-    "thrux": "^2.3.0"
+    "react-thrux": "^1.1.0",
+    "thrux": "^2.3.5"
   }
 }

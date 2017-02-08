@@ -10,12 +10,12 @@ export default {
   output : {
     path         : join(__dirname, 'dist'),
     libraryTarget: 'umd',
-    library      : 'thrux',
+    library      : 'react-thrux-router',
   },
   devtool: 'source-map',
   module : {
     loaders: [
-      {test: /\.js$/, loader: 'babel', include}
+      {test: /\.js$/, loader: 'babel-loader', include}
     ]
   }
 };
