@@ -10,7 +10,7 @@ export default {
   output : {
     path         : join(__dirname, 'dist'),
     libraryTarget: 'umd',
-    library      : 'react-thrux-router',
+    library      : 'ReactThruxRouter',
   },
   devtool: 'source-map',
   module : {

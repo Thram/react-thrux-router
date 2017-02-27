@@ -54,9 +54,9 @@ class Router extends Component {
   };
 
   render = () => {
-    if (this.state) {
-      const ReactComponent = this.state.router.component;
-      return ( <ReactComponent {...this.state.router.props} /> );
+    if (this.props.router) {
+      const ReactComponent = this.props.router.component;
+      return ( <ReactComponent {...this.props.router.props} /> );
     } else {
       return ( <div>{this.props.loading || 'Loading'}</div> );
     }

@@ -28,32 +28,30 @@
   },
   "homepage": "https://github.com/Thram/react-thrux-router#readme",
   "devDependencies": {
-    "babel-cli": "^6.22.2",
-    "babel-core": "^6.22.1",
-    "babel-jest": "^18.0.0",
-    "babel-loader": "^6.2.10",
+    "babel-cli": "^6.23.0",
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
     "babel-preset-es2015": "^6.22.0",
-    "babel-preset-react": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
     "babel-preset-stage-0": "^6.22.0",
-    "babel-register": "^6.22.0",
-    "commitizen": "^2.9.5",
-    "cz-conventional-changelog": "^1.2.0",
-    "ghooks": "^2.0.0",
-    "npm-run-all": "^4.0.1",
-    "rimraf": "^2.5.4",
+    "babel-register": "^6.23.0",
+    "commitizen": "^2.9.6",
+    "cz-conventional-changelog": "^2.0.0",
+    "npm-run-all": "^4.0.2",
+    "rimraf": "^2.6.1",
     "semantic-release": "^6.3.2",
     "umd": "^3.0.1",
     "webpack": "^2.2.1"
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "cz-conventional-changelog"
     }
   },
   "dependencies": {
-    "qs": "^6.3.0",
+    "qs": "^6.3.1",
     "react": "^15.4.2",
-    "react-thrux": "^1.2.1",
-    "thrux": "^2.4.1"
+    "react-thrux": "^2.1.1",
+    "thrux": "^2.5.5"
   }
 }

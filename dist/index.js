@@ -110,9 +110,9 @@ var Router = function (_Component) {
     };
 
     _this.render = function () {
-      if (_this.state) {
-        var ReactComponent = _this.state.router.component;
-        return _react2.default.createElement(ReactComponent, _this.state.router.props);
+      if (_this.props.router) {
+        var ReactComponent = _this.props.router.component;
+        return _react2.default.createElement(ReactComponent, _this.props.router.props);
       } else {
         return _react2.default.createElement(
           'div',
