@@ -13,6 +13,11 @@ export default {
     library      : 'ReactThruxRouter',
   },
   devtool: 'source-map',
+  externals: {
+    thrux      : 'thrux',
+    react      : 'React',
+    "react-thrux": 'ReactThrux',
+  },
   module : {
     loaders: [
       {test: /\.js$/, loader: 'babel-loader', include}
