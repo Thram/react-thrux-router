@@ -2988,14 +2988,14 @@ react-dom@^15.4.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
 
-react-thrux@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/react-thrux/-/react-thrux-2.2.3.tgz#65a74914fb06b46ec47d4e1f3b3cded8bf44835c"
+react-thrux@^2.2.4:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/react-thrux/-/react-thrux-2.2.4.tgz#95a38f9bd0e119dc15011199340758db3f0e61ca"
   dependencies:
     lodash "^4.17.4"
     react "^15.4.2"
     react-dom "^15.4.2"
-    thrux "^2.7.2"
+    thrux "^2.7.3"
 
 react@^15.4.2:
   version "15.4.2"
@@ -3567,9 +3567,9 @@ through@2, through@^2.3.6, through@~2.3, through@~2.3.1:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
 
-thrux@^2.7.2:
-  version "2.7.2"
-  resolved "https://registry.yarnpkg.com/thrux/-/thrux-2.7.2.tgz#f830d3d3e5c325c2d982e2b6c5171bad2a6a0594"
+thrux@^2.7.3:
+  version "2.7.3"
+  resolved "https://registry.yarnpkg.com/thrux/-/thrux-2.7.3.tgz#7b096a9647adb84964765076bffa43dca50caa71"
   dependencies:
     es6-promise "^4.0.5"
     lodash "^4.17.4"
