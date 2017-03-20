@@ -10,17 +10,17 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           */
 
 
-var _assign = require('lodash/assign');
+var _assign2 = require('lodash/assign');
 
-var _assign2 = _interopRequireDefault(_assign);
+var _assign3 = _interopRequireDefault(_assign2);
 
-var _omit = require('lodash/omit');
+var _omit2 = require('lodash/omit');
 
-var _omit2 = _interopRequireDefault(_omit);
+var _omit3 = _interopRequireDefault(_omit2);
 
-var _find = require('lodash/find');
+var _find2 = require('lodash/find');
 
-var _find2 = _interopRequireDefault(_find);
+var _find3 = _interopRequireDefault(_find2);
 
 var _qs = require('qs');
 
@@ -40,26 +40,26 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var _routes = void 0,
-    _options = {
+var routes = void 0;
+var options = {
   base: '#'
 };
 
 (0, _thrux.register)({
   router: {
-    GO_ROUTE: (0, _thrux.createDict)(function (_ref, state) {
+    GO_ROUTE: (0, _thrux.createDict)(function (_ref) {
       var route = _ref.route,
           props = _ref.props;
-      return (0, _assign2.default)({}, route, { props: props });
+      return (0, _assign3.default)({}, route, { props: props });
     }),
     SET_TAB: (0, _thrux.createDict)(function (tab, state) {
-      return (0, _assign2.default)({}, state, { tab: tab });
+      return (0, _assign3.default)({}, state, { tab: tab });
     }),
     OPEN_MODAL: (0, _thrux.createDict)(function (modal, state) {
-      return (0, _assign2.default)({}, state, { modal: modal });
+      return (0, _assign3.default)({}, state, { modal: modal });
     }),
     CLOSE_MODAL: (0, _thrux.createDict)(function (payload, state) {
-      return (0, _omit2.default)(state, 'modal');
+      return (0, _omit3.default)(state, 'modal');
     })
   }
 });
@@ -69,7 +69,7 @@ var setTab = exports.setTab = function setTab(tab) {
 };
 
 var goRoute = exports.goRoute = function goRoute(routeId, query) {
-  return window.location.href = '' + _options.base + (routeId || '/') + (query ? '?' + (0, _qs.stringify)(query) : '');
+  window.location.href = '' + options.base + (routeId || '/') + (query ? '?' + (0, _qs.stringify)(query) : '');
 };
 
 var openModal = exports.openModal = function openModal(_ref2) {
@@ -87,9 +87,9 @@ var goHash = function goHash() {
       path = _location$hash$split2[0],
       query = _location$hash$split2[1];
 
-  var routeId = path.replace('' + _options.base, '');
+  var routeId = path.replace('' + options.base, '');
   (0, _thrux.dispatch)('router:GO_ROUTE', {
-    route: (0, _find2.default)(_routes, { path: routeId || '/' }),
+    route: (0, _find3.default)(routes, { path: routeId || '/' }),
     props: (0, _qs.parse)(query)
   });
 };
@@ -102,6 +102,13 @@ var Router = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (Router.__proto__ || Object.getPrototypeOf(Router)).call(this, props));
 
+    _this.propTypes = {
+      routes: _react.PropTypes.arrayOf(_react.PropTypes.shape({})),
+      loading: _react.PropTypes.string,
+      options: _react.PropTypes.arrayOf(_react.PropTypes.shape({})),
+      router: _react.PropTypes.arrayOf(_react.PropTypes.shape({ component: {}, props: {} }))
+    };
+
     _this.componentDidMount = function () {
       window.onhashchange = function () {
         return goHash();
@@ -113,17 +120,16 @@ var Router = function (_Component) {
       if (_this.props.router) {
         var ReactComponent = _this.props.router.component;
         return _react2.default.createElement(ReactComponent, _this.props.router.props);
-      } else {
-        return _react2.default.createElement(
-          'div',
-          null,
-          _this.props.loading || 'Loading'
-        );
       }
+      return _react2.default.createElement(
+        'div',
+        null,
+        _this.props.loading || 'Loading'
+      );
     };
 
-    _routes = props.routes;
-    _options = (0, _assign2.default)({}, _options, props.options);
+    routes = props.routes;
+    options = (0, _assign3.default)({}, options, props.options);
     return _this;
   }
 
