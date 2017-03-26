@@ -62,13 +62,24 @@ class Router extends Component {
     goHash();
   };
 
-  render = () => {
-    if (this.props.router) {
-      const ReactComponent = this.props.router.component;
-      return (<ReactComponent {...this.props.router.props} />);
-    }
-    return (<div>{this.props.loading || 'Loading'}</div>);
-  }
+  renderLoading = () => (<div
+    ref={(loading) => {
+      this.loading = loading;
+    }}
+  >{this.props.loading || 'Loading'}</div>);
+
+  renderComponent = () => {
+    const ReactComponent = this.props.router.component;
+    return (<ReactComponent
+      ref={(component) => {
+        this.scene = component;
+      }} {...this.props.router.props}
+    />);
+  };
+
+  render = () => (this.props.router
+    ? this.renderComponent()
+    : this.renderLoading());
 }
 
 export default connect('router', Router);
