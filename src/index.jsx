@@ -44,11 +44,18 @@ const goHash = () => {
 
 class Router extends Component {
 
-  propTypes = {
+  static propTypes = {
     routes: PropTypes.arrayOf(PropTypes.shape({})),
     loading: PropTypes.string,
-    options: PropTypes.arrayOf(PropTypes.shape({})),
-    router: PropTypes.arrayOf(PropTypes.shape({ component: {}, props: {} })),
+    options: PropTypes.shape({}),
+    router: PropTypes.shape({ component: PropTypes.func, props: PropTypes.shape({}) }),
+  };
+
+  static defaultProps = {
+    routes: [],
+    loading: 'Loading',
+    options: undefined,
+    router: undefined,
   };
 
   constructor(props) {
@@ -59,7 +66,7 @@ class Router extends Component {
 
   componentDidMount = () => {
     window.onhashchange = () => goHash();
-    goHash();
+    setTimeout(goHash, 0);
   };
 
   renderLoading = () => (<div
@@ -78,8 +85,8 @@ class Router extends Component {
   };
 
   render = () => (this.props.router
-    ? this.renderComponent()
-    : this.renderLoading());
+      ? this.renderComponent()
+      : this.renderLoading());
 }
 
 export default connect('router', Router);

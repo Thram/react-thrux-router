@@ -1,14 +1,4 @@
-(function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("React"));
-	else if(typeof define === 'function' && define.amd)
-		define(["React"], factory);
-	else if(typeof exports === 'object')
-		exports["ReactThruxRouter"] = factory(require("React"));
-	else
-		root["ReactThruxRouter"] = factory(root["React"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_102__) {
-return /******/ (function(modules) { // webpackBootstrap
+/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -3412,7 +3402,7 @@ var initState = exports.initState = function initState(key) {
 /* 102 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_102__;
+module.exports = React;
 
 /***/ }),
 /* 103 */
@@ -19217,5 +19207,4 @@ exports.default = (0, _reactThrux.connect)('router', Router);
 
 /***/ })
 /******/ ]);
-});
-//# sourceMappingURL=react-thrux-router.umd.js.map
+//# sourceMappingURL=react-thrux-router.js.map

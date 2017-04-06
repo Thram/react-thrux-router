@@ -5,22 +5,33 @@ import { join } from 'path';
 
 const include = join(__dirname, 'src');
 
-export default {
-  entry: './src/index.jsx',
+const production = process.env.NODE_ENV === 'production';
+const config = {
+  entry: { 'react-thrux-router': './src/index' },
   output: {
     path: join(__dirname, 'dist'),
-    libraryTarget: 'umd',
-    library: 'ReactThruxRouter',
+    filename: `[name]${production ? '.min' : ''}.js`,
   },
-  devtool: 'source-map',
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+  devtool: production ? 'eval' : 'source-map',
   externals: {
-    thrux: 'thrux',
     react: 'React',
-    'react-thrux': 'ReactThrux',
+    'react-dom': 'ReactDOM',
   },
   module: {
-    loaders: [
+    rules: [
       { test: /\.jsx?$/, loader: 'babel-loader', include },
     ],
   },
 };
+
+export default [config, Object.assign({}, config, {
+  output: {
+    path: join(__dirname, 'dist'),
+    libraryTarget: 'umd',
+    library: 'ReactThruxRouter',
+    filename: `[name].umd${production ? '.min' : ''}.js`,
+  },
+})];
