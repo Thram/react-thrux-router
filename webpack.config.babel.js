@@ -16,10 +16,6 @@ const config = {
     extensions: ['.js', '.jsx'],
   },
   devtool: production ? 'eval' : 'source-map',
-  externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM',
-  },
   module: {
     rules: [
       { test: /\.jsx?$/, loader: 'babel-loader', include },
@@ -33,5 +29,9 @@ export default [config, Object.assign({}, config, {
     libraryTarget: 'umd',
     library: 'ReactThruxRouter',
     filename: `[name].umd${production ? '.min' : ''}.js`,
+  },
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDOM',
   },
 })];
