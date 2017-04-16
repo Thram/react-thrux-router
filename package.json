@@ -2,7 +2,7 @@
   "name": "react-thrux-router",
   "version": "0.0.0-development",
   "description": "Cross Browser router for React",
-  "main": "dist/index.js",
+  "main": "dist/react-thrux-router.js",
   "scripts": {
     "precommit": "npm run lint",
     "lint": "eslint src --ext .jsx,.js",
