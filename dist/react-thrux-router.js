@@ -1808,10 +1808,6 @@ var fullScreen = exports.fullScreen = {
   height: '100%'
 };
 
-var error = exports.error = _extends({
-  backgroundColor: '#D22042'
-}, fullScreen);
-
 var modalOverlay = exports.modalOverlay = _extends({
   position: 'absolute',
   top: 0,
@@ -4032,15 +4028,30 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Modal = function (_Component) {
   _inherits(Modal, _Component);
 
-  function Modal(props) {
+  function Modal() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
     _classCallCheck(this, Modal);
 
-    var _this = _possibleConstructorReturn(this, (Modal.__proto__ || Object.getPrototypeOf(Modal)).call(this, props));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-    _initialiseProps.call(_this);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Modal.__proto__ || Object.getPrototypeOf(Modal)).call.apply(_ref, [this].concat(args))), _this), _this.setModal = function (component) {
+      _this.modal = component;
+    }, _this.render = function () {
+      var _this$props = _this.props,
+          ReactComponent = _this$props.component,
+          props = _this$props.props;
 
-    console.log('Modal', props);
-    return _this;
+      return ReactComponent && _react2.default.createElement(
+        'div',
+        { style: _styles.modalOverlay },
+        _react2.default.createElement(ReactComponent, _extends({ ref: _this.setModal }, props))
+      );
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   return Modal;
@@ -4054,28 +4065,6 @@ Modal.defaultProps = {
   component: undefined,
   props: undefined
 };
-
-var _initialiseProps = function _initialiseProps() {
-  var _this2 = this;
-
-  this.setModal = function (component) {
-    _this2.modal = component;
-  };
-
-  this.render = function () {
-    var _props = _this2.props,
-        ReactComponent = _props.component,
-        props = _props.props;
-
-
-    return ReactComponent && _react2.default.createElement(
-      'div',
-      { style: _styles.modalOverlay },
-      _react2.default.createElement(ReactComponent, _extends({ ref: _this2.setModal }, props))
-    );
-  };
-};
-
 exports.default = Modal;
 
 /***/ }),
@@ -4450,7 +4439,7 @@ var _initialiseProps = function _initialiseProps() {
   this.renderError = function () {
     return _react2.default.createElement(
       'div',
-      { ref: _this2.setError, style: _styles.error },
+      { ref: _this2.setError, style: _styles.fullScreen },
       _this2.props.error || 'Error!'
     );
   };

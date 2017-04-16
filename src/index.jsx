@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-thrux';
 import { goHash, goRoute as actionGoRoute, initRoutes } from './actions';
-import { error, fullScreen } from './styles';
+import { fullScreen } from './styles';
 import Modal from './Modal';
 
 export const goRoute = actionGoRoute;
@@ -65,7 +65,7 @@ class Router extends Component {
     <div ref={this.setLoading} style={fullScreen}>{this.props.loading || 'Loading'}</div>);
 
   renderError = () => (
-    <div ref={this.setError} style={error}>{this.props.error || 'Error!'}</div>);
+    <div ref={this.setError} style={fullScreen}>{this.props.error || 'Error!'}</div>);
 
   renderComponent = () => {
     const { component: ReactComponent, props } = this.props.router.current;

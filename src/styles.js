@@ -7,11 +7,6 @@ export const fullScreen = {
   height: '100%',
 };
 
-export const error = {
-  backgroundColor: '#D22042',
-  ...fullScreen,
-};
-
 export const modalOverlay = {
   position: 'absolute',
   top: 0,

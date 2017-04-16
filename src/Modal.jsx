@@ -14,19 +14,12 @@ class Modal extends Component {
     props: undefined,
   };
 
-  constructor(props) {
-    super(props);
-    console.log('Modal', props);
-  }
-
-
   setModal = (component) => {
     this.modal = component;
   };
 
   render = () => {
     const { component: ReactComponent, props } = this.props;
-
     return ReactComponent && (
     <div style={modalOverlay}>
       <ReactComponent ref={this.setModal} {...props} />
