@@ -1,67 +1,47 @@
 /**
  * Created by thram on 30/01/17.
  */
-import _assign from 'lodash/assign';
 import _omit from 'lodash/omit';
-import _find from 'lodash/find';
-import { parse, stringify } from 'qs';
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-thrux';
-import { register, createDict, dispatch } from 'thrux';
+import { goHash, goRoute as actionGoRoute, initRoutes } from './actions';
+import { error, fullScreen } from './styles';
+import Modal from './Modal';
 
-let routes;
-let options = {
-  base: '#',
-};
+export const goRoute = actionGoRoute;
 
-register({
-  router: {
-    GO_ROUTE: createDict(({ route, props }) => _assign({}, route, { props })),
-    SET_TAB: createDict((tab, state) => _assign({}, state, { tab })),
-    OPEN_MODAL: createDict((modal, state) => _assign({}, state, { modal })),
-    CLOSE_MODAL: createDict((payload, state) => _omit(state, 'modal')),
-  },
-});
-
-export const setTab = tab => dispatch('router:SET_TAB', tab);
-
-export const goRoute = (routeId, query) => {
-  window.location.href = `${options.base}${routeId || '/'}${query ? `?${stringify(query)}` : ''}`;
-};
-
-export const openModal = ({ component }) => dispatch('router:OPEN_MODAL', { component });
-
-export const closeModal = () => dispatch('router:CLOSE_MODAL');
-
-const goHash = () => {
-  const [path, query] = location.hash.split('?');
-  const routeId = path.replace(`${options.base}`, '');
-  dispatch('router:GO_ROUTE', {
-    route: _find(routes, { path: routeId || '/' }),
-    props: parse(query),
-  });
-};
 
 class Router extends Component {
 
   static propTypes = {
-    routes: PropTypes.arrayOf(PropTypes.shape({})),
+    routes: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.shape({})),
+      PropTypes.shape({}),
+    ]),
     loading: PropTypes.string,
+    error: PropTypes.string,
     options: PropTypes.shape({}),
-    router: PropTypes.shape({ component: PropTypes.func, props: PropTypes.shape({}) }),
+    router: PropTypes.shape({
+      modal: PropTypes.shape({}),
+      current: PropTypes.shape({
+        component: PropTypes.func,
+        props: PropTypes.shape({}),
+      }),
+    }),
   };
 
   static defaultProps = {
     routes: [],
     loading: 'Loading',
+    error: 'Error',
     options: undefined,
     router: undefined,
   };
 
   constructor(props) {
     super(props);
-    routes = props.routes;
-    options = _assign({}, options, props.options);
+    initRoutes(props.routes, props.options);
   }
 
   componentDidMount = () => {
@@ -69,24 +49,38 @@ class Router extends Component {
     setTimeout(goHash, 0);
   };
 
-  renderLoading = () => (<div
-    ref={(loading) => {
-      this.loading = loading;
-    }}
-  >{this.props.loading || 'Loading'}</div>);
+  setScene = (component) => {
+    this.scene = component;
+  };
+
+  setLoading = (div) => {
+    this.loading = div;
+  };
+
+  setError = (div) => {
+    this.error = div;
+  };
+
+  renderLoading = () => (
+    <div ref={this.setLoading} style={fullScreen}>{this.props.loading || 'Loading'}</div>);
+
+  renderError = () => (
+    <div ref={this.setError} style={error}>{this.props.error || 'Error!'}</div>);
 
   renderComponent = () => {
-    const ReactComponent = this.props.router.component;
-    return (<ReactComponent
-      ref={(component) => {
-        this.scene = component;
-      }} {...this.props.router.props}
-    />);
+    const { component: ReactComponent, props } = this.props.router.current;
+    const { modal } = this.props.router;
+    return ReactComponent ? (
+      <div {..._omit(this.props, ['routes', 'loading', 'options', 'router'])}>
+        <ReactComponent ref={this.setScene} {...props} />
+        {modal && <Modal {...modal} />}
+      </div>
+    ) : this.renderError();
   };
 
   render = () => (this.props.router
-      ? this.renderComponent()
-      : this.renderLoading());
+    ? this.renderComponent()
+    : this.renderLoading());
 }
 
 export default connect('router', Router);
