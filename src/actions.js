@@ -70,3 +70,5 @@ export const goHash = () => {
     props: parse(query),
   });
 };
+
+export default { goHash, openModal, closeModal, setTab, goRoute, initRoutes };

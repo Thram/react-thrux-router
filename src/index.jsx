@@ -5,12 +5,21 @@ import _omit from 'lodash/omit';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-thrux';
-import { goHash, goRoute as actionGoRoute, initRoutes } from './actions';
+import {
+  closeModal as actionCloseModal,
+  goHash,
+  goRoute as actionGoRoute,
+  initRoutes,
+  openModal as actionOpenModal,
+  setTab as actionSetTab,
+} from './actions';
 import { fullScreen } from './styles';
 import Modal from './Modal';
 
 export const goRoute = actionGoRoute;
-
+export const openModal = actionOpenModal;
+export const closeModal = actionCloseModal;
+export const setTab = actionSetTab;
 
 class Router extends Component {
 

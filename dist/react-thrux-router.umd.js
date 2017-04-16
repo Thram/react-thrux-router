@@ -4209,6 +4209,8 @@ var goHash = exports.goHash = function goHash() {
   });
 };
 
+exports.default = { goHash: goHash, openModal: openModal, closeModal: closeModal, setTab: setTab, goRoute: goRoute, initRoutes: initRoutes };
+
 /***/ }),
 /* 99 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -4339,7 +4341,7 @@ exports.default = { connect: connect };
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.goRoute = undefined;
+exports.setTab = exports.closeModal = exports.openModal = exports.goRoute = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -4377,6 +4379,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var goRoute = exports.goRoute = _actions.goRoute;
+var openModal = exports.openModal = _actions.openModal;
+var closeModal = exports.closeModal = _actions.closeModal;
+var setTab = exports.setTab = _actions.setTab;
 
 var Router = function (_Component) {
   _inherits(Router, _Component);
