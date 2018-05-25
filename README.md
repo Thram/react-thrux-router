@@ -3,7 +3,7 @@
 [![Travis build](https://img.shields.io/travis/Thram/react-thrux-router.svg?style=flat-square)](https://travis-ci.org/Thram/react-thrux-router)
 [![version](https://img.shields.io/npm/v/react-thrux-router.svg?style=flat-square)](https://www.npmjs.com/package/react-thrux-router)
 [![downloads](https://img.shields.io/npm/dt/react-thrux-router.svg?style=flat-square)](https://www.npmjs.com/package/react-thrux-router)
-[![MIT License](https://img.shields.io/npm/l/react-thrux-router.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![MIT License](https://img.shields.io/npm/l/react-thrux-router.svg?style=flat-square)](https://opensource.org/licenses/MIT) [![Greenkeeper badge](https://badges.greenkeeper.io/Thram/react-thrux-router.svg)](https://greenkeeper.io/)
 
 Cross Browser router for React using [Thrux](https://github.com/Thram/thrux) state manager.
 
